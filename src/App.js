@@ -4,12 +4,14 @@ import { useValidation } from "./hooks/useValidation";
 
 function App() {
   const [value, setValue] = useState("");
-  const { isInitial, isShortPass, isEasy, isMedium, isStrong } =
-    useValidation(value);
+
+  const passValue = useValidation(value);
 
   function addColor(a, b, c) {
-    let result = `section ${isShortPass ? "shortPass" : ""} ${isEasy ? a : ""} 
-        ${isMedium ? b : ""} ${isStrong ? c : ""}`;
+    let result = `section ${passValue === "short" ? "shortPass" : ""} ${
+      passValue === "easy" ? a : ""
+    } 
+        ${passValue === "medium" ? b : ""} ${passValue === "strong" ? c : ""}`;
     return result;
   }
 
